@@ -1,11 +1,3 @@
-//
-//  Adres.swift
-//  Anne-Sophie_Leveugle_werkstuk1
-//
-//  Created by Anne-Sophie Leveugle on 13/05/2018.
-//  Copyright © 2018 Anne-Sophie Leveugle. All rights reserved.
-//
-
 import UIKit
 
 class Adres{

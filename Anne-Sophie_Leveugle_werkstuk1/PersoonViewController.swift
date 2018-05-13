@@ -1,11 +1,3 @@
-//
-//  PersoonViewController.swift
-//  Anne-Sophie_Leveugle_werkstuk1
-//
-//  Created by Anne-Sophie Leveugle on 16/04/2018.
-//  Copyright © 2018 Anne-Sophie Leveugle. All rights reserved.
-//
-
 import UIKit
 import MapKit
 
@@ -20,26 +12,26 @@ class PersoonViewController: UIViewController {
     @IBOutlet weak var lblTelefoonnummer: UILabel!
     @IBOutlet weak var lblGps: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var lblHuisnummer: UILabel!
+    @IBOutlet weak var lblPostcode: UILabel!
+    @IBOutlet weak var lblGemeente: UILabel!
     
     
     
     @IBAction func transformImage(_ sender: UIPinchGestureRecognizer) {
         self.myImageView.transform =  CGAffineTransform(scaleX: sender.scale, y: sender.scale)
-        
-        
-        //sender.scale = 1
-        
-        print("ok")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         self.myLabel.text = persoon.naam
         self.lblVoornaam.text = persoon.voornaam
         self.lblAdres.text = persoon.adres.straat
         self.lblTelefoonnummer.text = String(persoon.telefoonnummer)
         self.myImageView.image = UIImage(named: persoon.foto)
+        self.lblGemeente.text = persoon.adres.gemeente
+        self.lblPostcode.text = String(persoon.adres.postcode)
+        self.lblHuisnummer.text = String(persoon.adres.huisnummer)
         
         let initialLocation = CLLocation(latitude: persoon.gpscoördinaten[0], longitude: persoon.gpscoördinaten[1])
         let annotation = MKPointAnnotation()
@@ -55,24 +47,12 @@ class PersoonViewController: UIViewController {
      mapView.setRegion(coordinateRegion, animated: true)
      }
     
-    /*func mapView(_ mapView: MKMapView, didUpdate userlocation: MKUserLocation) {
-        let center = CLLocationCoordinate2D(latitude: persoon.gpscoördinaten[0], longitude: persoon.gpscoördinaten[1])
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-   
-        myMap.setRegion(region, animated: true)
-    
-    }*/
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
         //Meegeven van fotoinformatie aan volgende view
         if let nextVC = segue.destination as? ImageViewController
         {
@@ -80,10 +60,5 @@ class PersoonViewController: UIViewController {
         }
         
     }
-    
-    
-    
-    
-    
 }
 
